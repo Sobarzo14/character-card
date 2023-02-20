@@ -8,45 +8,111 @@ class CharacterCard extends LitElement {
   }
 
   static styles = css`
-    :host {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      font-size: calc(10px + 2vmin);
-      color: #1a2b42;
-      max-width: 960px;
-      margin: 0 auto;
-      text-align: center;
-      background-color: var(--character-card-background-color);
+    .card {
+        background-color: #44ab57;
+        border-radius: 2%;
+        width: 100%;
     }
-
-    main {
-      flex-grow: 1;
+    .title {
+        font-family: Arial, Helvetica, sans-serif;
+        color: white;
+        text-align: center;
+        padding: 8px;
     }
-
-    .logo {
-      margin-top: 36px;
-      animation: app-logo-spin infinite 20s linear;
+    .inside-card{
+        background-color: white;
+        margin: 8px;
+        display: flex;
+        border: thick double #32a1ce;
+        border-radius: 10px;
     }
-
-    @keyframes app-logo-spin {
-      from {
-        transform: rotate(0deg);
-      }
-      to {
-        transform: rotate(360deg);
-      }
+    .mickey {
+        width: 50%;
     }
-
-    .app-footer {
-      font-size: calc(12px + 0.5vmin);
-      align-items: center;
+    .hax-button {
+        background-color: skyblue;
+        display: inline-block;
+        padding: 16px;
+        font-family: Arial, Helvetica;
+        font-weight: bold;
+        box-shadow: 10px 5px 5px;
     }
-
-    .app-footer a {
-      margin-left: 5px;
+    .hax-button:hover {
+        background-color: skyblue;
+        display: inline-block;
+        padding: 16px;
+        font-family: Arial, Helvetica;
+        font-weight: bold;
+    }
+    .duplicate:hover {
+        background-color: black;
+        color: white;
+    }
+    .hovered:hover {
+        background-color: #456936;
+    }
+    @media screen and (max-width: 500px){
+        .card {
+            width: 100%;
+            padding: 8px;
+        }
+        .inside-card {
+            margin: auto;
+            width: 100%;
+            display: flex;
+        }
+        .mickey{
+            width: 50%;
+            margin: 8px;
+        }
+        .alternate {
+            background-color: #FCBA03;
+        }   
+    }
+    @media screen and (min-width: 500px) and (max-width: 800px){
+        .card {
+            width: 100%;
+        }
+        .inside-card {
+            background-color: white;
+            width: 400px;
+            display: flex;
+            margin: 10px;
+            border: thick double #32a1ce;
+            border-radius: 10px;
+            padding: 16px;
+        }
+        
+        .not-image{
+            margin: 8px;
+        }
+        .image {
+            margin: 16px;
+        }
+        .description {
+            font-size: 12pt;
+            font-family: Arial;
+        }
+    }
+    @media screen and (min-width: 800px){
+        .card {
+            width: 800px;
+        }
+        .title {
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        .mickey {
+            margin: 20px 30px;
+        }
+        .description {
+            font-size: 12pt;
+            font-family: Arial;
+        }
+        .hax-button {
+            display: none;
+        }
     }
   `;
 
@@ -57,30 +123,16 @@ class CharacterCard extends LitElement {
 
   render() {
     return html`
-      <main>
-        <div class="logo"><img alt="open-wc logo" src=${logo} /></div>
-        <h1>${this.header}</h1>
-
-        <p>Edit <code>src/CharacterCard.js</code> and save to reload.</p>
-        <a
-          class="app-link"
-          href="https://open-wc.org/guides/developing-components/code-examples/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Code examples
-        </a>
-      </main>
-
-      <p class="app-footer">
-        🚽 Made with love by
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          href="https://github.com/open-wc"
-          >open-wc</a
-        >.
-      </p>
+      <div class="card">
+            <h1 class="title">${this.name}</h1>
+        <section class="inside-card">
+            <img class="mickey" src="${this.img}" alt="Mickey Mouse">
+            <div class="not-image">
+                <p class="description">${this.description}</p>
+            <a class="hax-button" href="#">Details</a>
+            </div>
+        </section>
+      </div>
     `;
   }
 }
