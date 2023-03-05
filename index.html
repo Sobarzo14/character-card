@@ -21,21 +21,70 @@
 </head>
 
 <body>
-  <button class="duplicate">
-    Duplicate
-  </button>
-  <button class="toggle">
-    Toggle Color
-  </button>
-  <button class="change">
-    Change Title
-  </button>
-  <button class="delete">
-    Delete
-  </button>
+  <div class="buttons">
+    <button class="duplicate">
+      Duplicate Card
+    </button>
+    <button class="toggle">
+      Toggle Color
+    </button>
+    <button class="change">
+      Change Title
+    </button>
+    <button class="delete">
+      Delete Card
+    </button>
+    <button class="details">
+      Toggle Details
+    </button>
+  </div>
   <character-card></character-card>
 
   <script type="module" src="./src/character-card.js"></script>
+  <script type="module">
+      function duplicateCard() {
+        const node = document.querySelector("character-card");
+        const clone = node.cloneNode(true);
+        document.body.appendChild(clone);
+      }
+
+      function changeTitle() {
+        const newDescription = window.prompt("So what is this?");
+        document.querySelector("character-card").name  = newDescription;
+    
+      };
+
+      function changeColor() {
+        const colors = ["blue", "coral", "green", "orange"]
+        const randomColor = colors[Math.floor(Math.random() * colors.length)];
+        document.querySelector("character-card").accentColor = randomColor;
+      }
+
+      function removeLastCard() {
+        const {lastChild} = document.body;
+        if (lastChild.isEqualNode(document.querySelector("character-card"))){
+          lastChild.remove();
+        } else {
+          alert("please stop dude");
+        }
+      }
+
+      function toggleDetails() {
+        const card = document.querySelector("character-card");
+        card.openDetails = !card.openDetails;
+      }
+
+      document.querySelector(".duplicate").addEventListener("click", duplicateCard);
+      
+      document.querySelector(".toggle").addEventListener("click", changeColor)
+      
+      document.querySelector(".change").addEventListener("click", changeTitle);
+      
+      document.querySelector(".delete").addEventListener("click", removeLastCard);
+
+      document.querySelector(".details").addEventListener("click", toggleDetails)
+
+  </script>
 </body>
 
 </html>
