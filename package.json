@@ -1,9 +1,9 @@
 {
-  "name": "character-card",
+  "name": "aqs7055-character-card",
   "description": "Webcomponent character-card following open-wc recommendations",
   "license": "MIT",
-  "author": "character-card",
-  "version": "0.0.0",
+  "author": "aqs7055-character-card",
+  "version": "1.0.0",
   "scripts": {
     "lint": "eslint --ext .js,.html . --ignore-path .gitignore && prettier \"**/*.js\" --check --ignore-path .gitignore",
     "format": "eslint --ext .js,.html . --fix --ignore-path .gitignore && prettier \"**/*.js\" --write --ignore-path .gitignore",
@@ -69,5 +69,20 @@
       "prettier --write"
     ]
   },
-  "customElements": "custom-elements.json"
+  "customElements": "custom-elements.json",
+  "main": "rollup.config.js",
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sobarzo14/character-card.git"
+  },
+  "keywords": [
+    "character-chard"
+  ],
+  "bugs": {
+    "url": "https://github.com/Sobarzo14/character-card/issues"
+  },
+  "homepage": "https://github.com/Sobarzo14/character-card#readme"
 }

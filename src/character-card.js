@@ -143,6 +143,26 @@
         }
     `;
 
+    toggleEvent(e) {
+        const state = this.shadowRoot.querySelector('details').getAttribute('open') === "";
+        this.openDetails = state;
+        console.log(this.openDetails)
+    }
+
+    updated(changedProperties) { 
+        changedProperties.forEach((oldValue, propName) => {
+            if (propName === 'openDetails') {
+                this.dispatchEvent(new CustomEvent('opened-changed',
+                {
+                    composed: true, 
+                    bubbles: true,
+                    cancelable: false,
+                    detail: {
+                    value: this[propName]}}))
+                }
+        });
+    }
+
         render() {
         return html`
             <div class="card" accent-color=${this.accentColor}>
@@ -151,8 +171,8 @@
                 <meme-maker image-url="${this.url}" top-text="${this.top}"></meme-maker>
                 <div class="not-image">
                     <p class="description">${this.description}</p>
-                    <slot></slot>
-                <details class="details" .open="${this.openDetails}">
+                    <slot name="desc"></slot> 
+                <details class="details" .open="${this.openDetails}" @toggle="${this.toggleEvent}">
                     <summary>Details</summary>
                     "Voiced by: " ${this.voice}
                 </details>

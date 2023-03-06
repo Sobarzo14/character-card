@@ -35,13 +35,19 @@
       Delete Card
     </button>
     <button class="details">
-      Toggle Details
+      Show Details
     </button>
   </div>
   <character-card></character-card>
 
   <script type="module" src="./src/character-card.js"></script>
   <script type="module">
+    
+      document.body.addEventListener("opened-changed", (e) => {
+        document.querySelector(".details").innerText = e.detail.value ? "Hide Details" : "Show Details"
+      })
+
+
       function duplicateCard() {
         const node = document.querySelector("character-card");
         const clone = node.cloneNode(true);
