@@ -12,11 +12,20 @@
                 type: String,
                 reflect: true
             },
+            voice: {
+                type: String,
+                reflect: true
+            },
             accentColor: {
                 type: String,
                 reflect: true,
                 attribute: "accent-color"
             },
+            image: {
+                type: String,
+                reflect: true
+            },
+
             openDetails: {
                 type: Boolean,
                 reflect: true
@@ -28,10 +37,9 @@
         super();
         this.header = 'My app';
         this.name = "Mickey Mouse";
-        this.url = "https://di2ponv0v5otw.cloudfront.net/posts/2022/05/04/6272d95efdd4cd63f1180f24/m_wp_6272dadf4fd23afc4104b553.webp";
+        this.image = "https://di2ponv0v5otw.cloudfront.net/posts/2022/05/04/6272d95efdd4cd63f1180f24/m_wp_6272dadf4fd23afc4104b553.webp";
         this.description = "This is the man himself; Mickey the Mouse";
         this.voice = "Chris Diamantopoulos";
-        this.top = "Mickey";
         this.accentColor = "coral";
         this.openDetails = false;
     }
@@ -143,10 +151,9 @@
         }
     `;
 
-    toggleEvent(e) {
+    toggleEvent() {
         const state = this.shadowRoot.querySelector('details').getAttribute('open') === "";
         this.openDetails = state;
-        console.log(this.openDetails)
     }
 
     updated(changedProperties) { 
@@ -168,13 +175,13 @@
             <div class="card" accent-color=${this.accentColor}>
                 <h1 class="title">${this.name}</h1>
             <section class="inside-card">
-                <meme-maker image-url="${this.url}" top-text="${this.top}"></meme-maker>
+                <meme-maker image-url="${this.image}" top-text="${this.name}"></meme-maker>
                 <div class="not-image">
                     <p class="description">${this.description}</p>
                     <slot name="desc"></slot> 
                 <details class="details" .open="${this.openDetails}" @toggle="${this.toggleEvent}">
                     <summary>Details</summary>
-                    "Voiced by: " ${this.voice}
+                    Voiced by:  ${this.voice}
                 </details>
                 </div>
             </section>
