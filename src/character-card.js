@@ -10,20 +10,17 @@
             },
             description: {
                 type: String,
-                reflect: true
             },
             voice: {
                 type: String,
-                reflect: true
             },
             accentColor: {
                 type: String,
-                reflect: true,
-                attribute: "accent-color"
+                attribute: "accent-color",
+                reflect: true
             },
             image: {
                 type: String,
-                reflect: true
             },
 
             openDetails: {
@@ -181,7 +178,7 @@
                     <slot name="desc"></slot> 
                 <details class="details" .open="${this.openDetails}" @toggle="${this.toggleEvent}">
                     <summary>Details</summary>
-                    Voiced by:  ${this.voice}
+                    <slot>Voiced by: ${this.voice}</slot>
                 </details>
                 </div>
             </section>

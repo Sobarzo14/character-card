@@ -38,9 +38,15 @@
       Show Details
     </button>
   </div>
+  
+  <character-roster></character-roster>
   <character-card></character-card>
 
-  <script type="module" src="./src/character-card.js"></script>
+
+  <script type="module">
+    import './src/character-card.js'
+    import './src/character-roster.js'
+  </script>
   <script type="module">
     
       document.body.addEventListener("opened-changed", (e) => {

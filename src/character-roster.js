@@ -1,4 +1,5 @@
 import { LitElement, html, css } from 'lit';
+import "./character-card.js"
 
 export class CharacterRoster extends LitElement {
     static get tag(){
@@ -16,8 +17,22 @@ export class CharacterRoster extends LitElement {
         super();
         this.characters = [];
         this.series = "Mickey Mouse Clubhouse";
+        this.updateRoster();
     }
 
+    async updateRoster() {
+        const address = new URL("../assets/roster.json", import.meta.url).href;
+        fetch(address).then((response) => {
+            if (response.ok){
+                return response.json();
+            }
+            return [];
+        })
+        .then((data) => {
+            this.characters = data;
+        });
+    }
+    
     static get styles() {
         return css `
         :host {
@@ -39,12 +54,11 @@ export class CharacterRoster extends LitElement {
         <div class="wrapper">
             ${this.characters.map(character => html `
             <div class="item">
-                <character-card name=${character.name} description=${character.description} image=${character.image}></character-card>
+                <character-card name=${character.name} description=${character.description} image=${character.image} voice=${character.voice}></character-card>
             </div>
             `)}
         </div>
         `;
     }
 }
-
 customElements.define(CharacterRoster.tag, CharacterRoster);

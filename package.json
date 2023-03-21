@@ -3,7 +3,7 @@
   "description": "Webcomponent character-card following open-wc recommendations",
   "license": "MIT",
   "author": "aqs7055",
-  "version": "1.0.0",
+  "version": "1.1.2",
   "scripts": {
     "lint": "eslint --ext .js,.html . --ignore-path .gitignore && prettier \"**/*.js\" --check --ignore-path .gitignore",
     "format": "eslint --ext .js,.html . --fix --ignore-path .gitignore && prettier \"**/*.js\" --write --ignore-path .gitignore",
